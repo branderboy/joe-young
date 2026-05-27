@@ -422,7 +422,7 @@
                         <path fill-rule="evenodd" d="M6.75 5.25a.75.75 0 01.75-.75H9a.75.75 0 01.75.75v13.5a.75.75 0 01-.75.75H7.5a.75.75 0 01-.75-.75V5.25zm7.5 0A.75.75 0 0115 4.5h1.5a.75.75 0 01.75.75v13.5a.75.75 0 01-.75.75H15a.75.75 0 01-.75-.75V5.25z" clip-rule="evenodd" />
                     </svg>
                 </button>
-                <audio id="playerAudio" preload="metadata" src="BTB%26TB%20(Accept%20Maturity).mp3"></audio>
+                <audio id="playerAudio" preload="metadata" src="between-the-block-and-the-burbs.mp3"></audio>
                 <div class="hidden md:flex gap-3">
                     <button class="font-technical text-[10px] uppercase tracking-[0.2em] font-black border border-paper px-3 py-1 hover:bg-paper hover:text-ink transition-colors text-paper">Spotify</button>
                     <button class="font-technical text-[10px] uppercase tracking-[0.2em] font-black border border-paper px-3 py-1 hover:bg-paper hover:text-ink transition-colors text-paper">Apple Music</button>
@@ -514,7 +514,14 @@
 
             toggle.addEventListener('click', () => {
                 if (audio.paused) {
-                    audio.play().catch(() => setPlayingUI(false));
+                    const p = audio.play();
+                    if (p && typeof p.catch === 'function') {
+                        p.catch((err) => {
+                            console.error('Audio play failed:', err, 'src=', audio.currentSrc || audio.src);
+                            toggle.setAttribute('aria-label', 'Audio unavailable');
+                            setPlayingUI(false);
+                        });
+                    }
                 } else {
                     audio.pause();
                 }
@@ -522,6 +529,9 @@
             audio.addEventListener('play', () => setPlayingUI(true));
             audio.addEventListener('pause', () => setPlayingUI(false));
             audio.addEventListener('ended', () => setPlayingUI(false));
+            audio.addEventListener('error', () => {
+                console.error('Audio element error. networkState=', audio.networkState, 'src=', audio.currentSrc || audio.src);
+            });
         })();
     </script>
 
