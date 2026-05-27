@@ -150,12 +150,12 @@
                 <!-- Polaroid 1 (Left, tilted backward) -->
                 <div class="bg-white p-2 sm:p-3 pb-10 sm:pb-12 shadow-[6px_6px_0_#1a2b3d] sm:shadow-[8px_8px_0_#1a2b3d] -rotate-6 hover:rotate-0 transition-transform duration-500 rounded-sm border-2 border-navy/10 w-32 sm:w-40 md:w-56 z-10 translate-x-3 translate-y-3 sm:translate-x-4 sm:translate-y-4">
                     <img
-                        src="images/RZRY7450.jpg"
-                        class="w-full aspect-square object-cover filter grayscale contrast-[1.2]"
+                        src="images/RZRY7560.jpg"
+                        class="w-full aspect-square object-cover"
                         alt="Family History Polaroid"
                     />
                     <div class="mt-4 flex justify-between items-end border-b-2 border-navy/20 pb-1">
-                        <span class="font-display text-navy text-sm md:text-lg">THE FAMILY</span>
+                        <span class="font-display text-navy text-sm md:text-lg">THE MODE</span>
                     </div>
                 </div>
 
@@ -163,7 +163,7 @@
                 <div class="bg-white p-2 sm:p-3 pb-10 sm:pb-12 shadow-[6px_6px_0_#a64a2e] sm:shadow-[8px_8px_0_#a64a2e] rotate-6 hover:rotate-0 transition-transform duration-500 rounded-sm border-2 border-navy/10 w-32 sm:w-40 md:w-56 z-20 -translate-x-3 -translate-y-3 sm:-translate-x-4 sm:-translate-y-4">
                     <img
                         src="images/RZRY7465.jpg"
-                        class="w-full aspect-square object-cover filter grayscale contrast-[1.2]"
+                        class="w-full aspect-square object-cover"
                         alt="The Blueprint Polaroid"
                     />
                     <div class="mt-4 flex justify-between items-end border-b-2 border-navy/20 pb-1">
@@ -422,7 +422,7 @@
                         <path fill-rule="evenodd" d="M6.75 5.25a.75.75 0 01.75-.75H9a.75.75 0 01.75.75v13.5a.75.75 0 01-.75.75H7.5a.75.75 0 01-.75-.75V5.25zm7.5 0A.75.75 0 0115 4.5h1.5a.75.75 0 01.75.75v13.5a.75.75 0 01-.75.75H15a.75.75 0 01-.75-.75V5.25z" clip-rule="evenodd" />
                     </svg>
                 </button>
-                <audio id="playerAudio" preload="metadata" src="BTB%26TB%20(Accept%20Maturity).mp3"></audio>
+                <audio id="playerAudio" preload="metadata" src="between-the-block-and-the-burbs.mp3"></audio>
                 <div class="hidden md:flex gap-3">
                     <button class="font-technical text-[10px] uppercase tracking-[0.2em] font-black border border-paper px-3 py-1 hover:bg-paper hover:text-ink transition-colors text-paper">Spotify</button>
                     <button class="font-technical text-[10px] uppercase tracking-[0.2em] font-black border border-paper px-3 py-1 hover:bg-paper hover:text-ink transition-colors text-paper">Apple Music</button>
@@ -514,7 +514,14 @@
 
             toggle.addEventListener('click', () => {
                 if (audio.paused) {
-                    audio.play().catch(() => setPlayingUI(false));
+                    const p = audio.play();
+                    if (p && typeof p.catch === 'function') {
+                        p.catch((err) => {
+                            console.error('Audio play failed:', err, 'src=', audio.currentSrc || audio.src);
+                            toggle.setAttribute('aria-label', 'Audio unavailable');
+                            setPlayingUI(false);
+                        });
+                    }
                 } else {
                     audio.pause();
                 }
@@ -522,6 +529,9 @@
             audio.addEventListener('play', () => setPlayingUI(true));
             audio.addEventListener('pause', () => setPlayingUI(false));
             audio.addEventListener('ended', () => setPlayingUI(false));
+            audio.addEventListener('error', () => {
+                console.error('Audio element error. networkState=', audio.networkState, 'src=', audio.currentSrc || audio.src);
+            });
         })();
     </script>
 
