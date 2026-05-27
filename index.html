@@ -105,7 +105,7 @@
         />
 
         <!-- Street Sign CTA -->
-        <a href="#about" class="street-sign-btn inline-flex items-center bg-ink border-[3px] border-paper p-1 shadow-[6px_6px_0_#b8884a] transition-all active:translate-y-1 active:shadow-[2px_2px_0_#b8884a] mt-8">
+        <a id="heroListen" href="#about" class="street-sign-btn inline-flex items-center bg-ink border-[3px] border-paper p-1 shadow-[6px_6px_0_#b8884a] transition-all active:translate-y-1 active:shadow-[2px_2px_0_#b8884a] mt-8">
             <span class="px-6 sm:px-8 py-3 font-display text-paper uppercase tracking-widest text-lg sm:text-2xl md:text-3xl">
                 LISTEN NOW
             </span>
@@ -500,6 +500,21 @@
                 emailInput.value = '';
                 locationInput.value = '';
             });
+        })();
+
+        (function () {
+            const heroListen = document.getElementById('heroListen');
+            const audio = document.getElementById('playerAudio');
+            if (heroListen) {
+                heroListen.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                    if (audio && audio.paused) {
+                        const p = audio.play();
+                        if (p && typeof p.catch === 'function') p.catch(() => {});
+                    }
+                });
+            }
         })();
 
         (function () {
