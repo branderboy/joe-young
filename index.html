@@ -413,20 +413,11 @@
                     <p id="playerStatus" class="font-technical text-[9px] text-paper/60 uppercase tracking-widest mt-1 truncate"></p>
                 </div>
             </div>
-            <div class="flex items-center gap-4 md:gap-8 shrink-0">
-                <!-- Brutalist Play Button -->
-                <button id="playerToggle" class="text-paper hover:text-gold transition-colors" aria-label="Play">
-                    <svg id="playerIconPlay" class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path fill-rule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clip-rule="evenodd" />
-                    </svg>
-                    <svg id="playerIconPause" class="w-8 h-8 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                        <path fill-rule="evenodd" d="M6.75 5.25a.75.75 0 01.75-.75H9a.75.75 0 01.75.75v13.5a.75.75 0 01-.75.75H7.5a.75.75 0 01-.75-.75V5.25zm7.5 0A.75.75 0 0115 4.5h1.5a.75.75 0 01.75.75v13.5a.75.75 0 01-.75.75H15a.75.75 0 01-.75-.75V5.25z" clip-rule="evenodd" />
-                    </svg>
-                </button>
-                <audio id="playerAudio" preload="metadata" src="between-the-block-and-the-burbs.mp3"></audio>
-                <div class="hidden md:flex gap-3">
-                    <button class="font-technical text-[10px] uppercase tracking-[0.2em] font-black border border-paper px-3 py-1 hover:bg-paper hover:text-ink transition-colors text-paper">Spotify</button>
-                    <button class="font-technical text-[10px] uppercase tracking-[0.2em] font-black border border-paper px-3 py-1 hover:bg-paper hover:text-ink transition-colors text-paper">Apple Music</button>
+            <div class="flex items-center gap-3 md:gap-6 shrink-0">
+                <audio id="playerAudio" controls preload="metadata" src="between-the-block-and-the-burbs.mp3" class="h-10 w-48 sm:w-64 md:w-80"></audio>
+                <div class="hidden lg:flex gap-3">
+                    <a href="#" class="font-technical text-[10px] uppercase tracking-[0.2em] font-black border border-paper px-3 py-1 hover:bg-paper hover:text-ink transition-colors text-paper">Spotify</a>
+                    <a href="#" class="font-technical text-[10px] uppercase tracking-[0.2em] font-black border border-paper px-3 py-1 hover:bg-paper hover:text-ink transition-colors text-paper">Apple Music</a>
                 </div>
             </div>
         </div>
@@ -502,43 +493,17 @@
 
         (function () {
             const audio = document.getElementById('playerAudio');
-            const toggle = document.getElementById('playerToggle');
-            const iconPlay = document.getElementById('playerIconPlay');
-            const iconPause = document.getElementById('playerIconPause');
             const status = document.getElementById('playerStatus');
-            if (!audio || !toggle) return;
-
-            const setStatus = (text) => { if (status) status.textContent = text; };
-            const setPlayingUI = (playing) => {
-                iconPlay.classList.toggle('hidden', playing);
-                iconPause.classList.toggle('hidden', !playing);
-                toggle.setAttribute('aria-label', playing ? 'Pause' : 'Play');
-            };
-
+            if (!audio || !status) return;
+            const codes = { 1: 'ABORTED', 2: 'NETWORK', 3: 'DECODE', 4: 'AUDIO FILE NOT SUPPORTED OR NOT FOUND' };
+            const setStatus = (t) => { status.textContent = t; };
             setStatus('READY');
-            toggle.addEventListener('click', () => {
-                if (audio.paused) {
-                    setStatus('LOADING…');
-                    const p = audio.play();
-                    if (p && typeof p.catch === 'function') {
-                        p.catch((err) => {
-                            console.error('Audio play failed:', err, 'src=', audio.currentSrc || audio.src);
-                            setStatus('ERROR: ' + (err && err.name ? err.name : 'PLAY FAILED'));
-                            setPlayingUI(false);
-                        });
-                    }
-                } else {
-                    audio.pause();
-                }
-            });
+            audio.addEventListener('loadedmetadata', () => setStatus('READY — ' + Math.round(audio.duration) + 'S'));
             audio.addEventListener('playing', () => setStatus('PLAYING'));
-            audio.addEventListener('play', () => setPlayingUI(true));
-            audio.addEventListener('pause', () => { setPlayingUI(false); setStatus('PAUSED'); });
-            audio.addEventListener('ended', () => { setPlayingUI(false); setStatus('ENDED'); });
+            audio.addEventListener('pause', () => setStatus('PAUSED'));
+            audio.addEventListener('ended', () => setStatus('ENDED'));
             audio.addEventListener('error', () => {
-                const codes = { 1: 'ABORTED', 2: 'NETWORK', 3: 'DECODE', 4: 'SRC_NOT_SUPPORTED' };
                 const code = audio.error && audio.error.code;
-                console.error('Audio element error. code=', code, 'networkState=', audio.networkState, 'src=', audio.currentSrc || audio.src);
                 setStatus('ERROR: ' + (codes[code] || 'UNKNOWN'));
             });
         })();
