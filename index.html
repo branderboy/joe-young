@@ -1,1 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Between The Block & The Burbs | Joe Young</title>
+    
+    <!-- Google Fonts: Distressed Slab, Stencil, Typewriter, and stark Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;700;900&family=Special+Elite&family=Stardos+Stencil:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'navy': '#1a2b3d',
+                        'gold': '#b8884a',
+                        'brick': '#a64a2e',
+                        'paper': '#e8dcc4',
+                        'ink': '#000000'
+                    },
+                    fontFamily: {
+                        'display': ['"Special Elite"', 'cursive'],
+                        'stencil': ['"Stardos Stencil"', 'serif'],
+                        'typewriter': ['"Courier Prime"', 'monospace'],
+                        'technical': ['"Inter"', 'sans-serif']
+                    },
+                    keyframes: {
+                        'brutal-pulse': {
+                            '0%, 100%': { transform: 'translateY(0)', boxShadow: '6px 6px 0 #b8884a' },
+                            '50%': { transform: 'translateY(-4px)', boxShadow: '10px 10px 0 #b8884a' }
+                        }
+                    },
+                    animation: {
+                        'brutal-pulse': 'brutal-pulse 2s ease-in-out infinite'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Global Reset & Typography Tweaks */
+        ::selection { background-color: #b8884a; color: #000000; }
+        
+        /* NYT Editorial Drop Cap */
+        .drop-cap::first-letter {
+            font-family: 'Special Elite', cursive;
+            font-size: 4.5rem;
+            line-height: 1;
+            float: left;
+            margin-right: 0.5rem;
+            margin-top: 0.1rem;
+            color: #1a2b3d;
+        }
 
+        /* 1990s Mixtape Texture */
+        .texture-grain {
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            pointer-events: none;
+            opacity: 0.08;
+            mix-blend-mode: multiply;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Off-White Style Brutalist Hover */
+        .street-sign-btn:hover .sign-arrow {
+            transform: translateX(4px);
+        }
+
+        /* Jagged Paper Edge Utility */
+        .jagged-edge-top {
+            clip-path: polygon(0% 10px, 2% 0px, 4% 12px, 6% 2px, 8% 10px, 10% 0px, 12% 14px, 14% 3px, 16% 9px, 18% 0px, 20% 11px, 22% 2px, 24% 10px, 26% 0px, 28% 13px, 30% 1px, 32% 10px, 34% 0px, 36% 12px, 38% 3px, 40% 9px, 42% 0px, 44% 14px, 46% 2px, 48% 10px, 50% 0px, 52% 11px, 54% 1px, 56% 13px, 58% 2px, 60% 10px, 62% 0px, 64% 12px, 66% 3px, 68% 9px, 70% 0px, 72% 14px, 74% 2px, 76% 10px, 78% 0px, 80% 11px, 82% 1px, 84% 13px, 86% 2px, 88% 10px, 90% 0px, 92% 12px, 94% 3px, 96% 9px, 98% 0px, 100% 14px, 100% 100%, 0% 100%);
+            margin-top: -10px;
+        }
+        
+        .jagged-edge-bottom {
+            clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 10px), 98% 100%, 96% calc(100% - 12px), 94% 100%, 92% calc(100% - 9px), 90% 100%, 88% calc(100% - 13px), 86% 100%, 84% calc(100% - 10px), 82% 100%, 80% calc(100% - 14px), 78% 100%, 76% calc(100% - 11px), 74% 100%, 72% calc(100% - 9px), 70% 100%, 68% calc(100% - 13px), 66% 100%, 64% calc(100% - 10px), 62% 100%, 60% calc(100% - 12px), 58% 100%, 56% calc(100% - 10px), 54% 100%, 52% calc(100% - 14px), 50% 100%, 48% calc(100% - 11px), 46% 100%, 44% calc(100% - 9px), 42% 100%, 40% calc(100% - 13px), 38% 100%, 36% calc(100% - 10px), 34% 100%, 32% calc(100% - 12px), 30% 100%, 28% calc(100% - 10px), 26% 100%, 24% calc(100% - 14px), 22% 100%, 20% calc(100% - 11px), 18% 100%, 16% calc(100% - 9px), 14% 100%, 12% calc(100% - 13px), 10% 100%, 8% calc(100% - 10px), 6% 100%, 4% calc(100% - 12px), 2% 100%, 0% calc(100% - 10px));
+            margin-bottom: -10px;
+        }
+    </style>
+</head>
+<body class="bg-white text-ink font-typewriter overflow-x-hidden min-h-screen pb-24">
+
+    <!-- GLOBAL GRAIN TEXTURE -->
+    <div class="texture-grain"></div>
+
+    <!-- 1. HERO SECTION -->
+    <section class="relative w-full flex flex-col justify-center items-center bg-ink jagged-edge-bottom z-10 pb-16">
+        
+        <!-- Fully readable full-bleed cover image -->
+        <img 
+            src="https://i.postimg.cc/D0S5KwXk/joeyoungimage.png" 
+            alt="Between The Block & The Burbs" 
+            class="w-full h-auto object-cover"
+        />
+
+        <!-- Street Sign CTA -->
+        <a href="#about" class="street-sign-btn animate-brutal-pulse inline-flex items-center bg-ink border-[3px] border-paper p-1 shadow-[6px_6px_0_#b8884a] transition-all active:translate-y-1 active:shadow-[2px_2px_0_#b8884a] mt-8">
+            <span class="px-8 py-3 font-display text-paper uppercase tracking-widest text-xl md:text-2xl">
+                LISTEN NOW
+            </span>
+            <div class="bg-paper text-ink p-3 border-l-[3px] border-ink sign-arrow transition-transform duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-8 h-8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+            </div>
+        </a>
+    </section>
+
+    <!-- 2. ABOUT THE MIXTAPE (NYT Longform / Origin Narrative) -->
+    <section id="about" class="bg-white text-navy pt-16 pb-16 md:pb-24 px-6 md:px-12 relative z-0">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            
+            <!-- Narrative Column -->
+            <div class="lg:col-span-7 flex flex-col pt-8">
+                <p class="font-technical text-[10px] tracking-[0.3em] uppercase font-black mb-6 text-brick">
+                    // NORTHEAST DC TO PRINCE GEORGE'S COUNTY
+                </p>
+                <h2 class="font-stencil text-5xl md:text-7xl uppercase text-navy leading-none mb-8">
+                    The Origin<br/>Narrative
+                </h2>
+                
+                <div class="text-lg md:text-xl leading-relaxed text-navy/90 text-justify space-y-6">
+                    <p class="drop-cap">
+                        Joe Young is an artist with more than forty years of lived experience behind his music. Raised in a household shaped by both love and instability, he learned early how to survive through observation and build through discipline. His grandmother sold two homes to relocate the family—that sacrifice became the foundation of everything that followed.
+                    </p>
+                    <p>
+                        He was performing at sixteen, producing at nineteen, and has spent his career building businesses alongside music because he understood that ownership matters as much as talent. 
+                    </p>
+                    <p class="font-bold border-l-[6px] border-brick pl-6 py-2 my-6 bg-gold/10 text-brick">
+                        "They had to grind without glory. I promised them I'd build it different."
+                    </p>
+                    <p>
+                        The DMV has produced undeniable talent—yet the region has historically been overlooked by major industry infrastructure. The culture is real, but the lack of unified support systems has cost the region its moment more than once. His work aims to change that narrative.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Polaroid / Artifact Column (Stacked) -->
+            <div class="lg:col-span-5 flex flex-row items-center justify-center lg:justify-end pt-8 lg:pt-16">
+                
+                <!-- Polaroid 1 (Left, tilted backward) -->
+                <div class="bg-white p-3 pb-12 shadow-[8px_8px_0_#1a2b3d] -rotate-6 hover:rotate-0 transition-transform duration-500 rounded-sm border-2 border-navy/10 w-40 md:w-56 z-10 translate-x-4 translate-y-4">
+                    <img 
+                        src="https://i.postimg.cc/dtSZg9ss/mixtape-cover.jpg" 
+                        class="w-full aspect-square object-cover object-[15%_80%] filter grayscale contrast-[1.2]" 
+                        alt="Family History Polaroid" 
+                    />
+                    <div class="mt-4 flex justify-between items-end border-b-2 border-navy/20 pb-1">
+                        <span class="font-display text-navy text-sm md:text-lg">THE FAMILY</span>
+                    </div>
+                </div>
+
+                <!-- Polaroid 2 (Right, overlapping, tilted forward) -->
+                <div class="bg-white p-3 pb-12 shadow-[8px_8px_0_#a64a2e] rotate-6 hover:rotate-0 transition-transform duration-500 rounded-sm border-2 border-navy/10 w-40 md:w-56 z-20 -translate-x-4 -translate-y-4">
+                    <img 
+                        src="https://i.postimg.cc/dtSZg9ss/mixtape-cover.jpg" 
+                        class="w-full aspect-square object-cover object-[85%_85%] filter grayscale contrast-[1.2]" 
+                        alt="The Blueprint Polaroid" 
+                    />
+                    <div class="mt-4 flex justify-between items-end border-b-2 border-navy/20 pb-1">
+                        <span class="font-display text-navy text-sm md:text-lg">THE PLAN</span>
+                        <span class="font-technical text-[8px] md:text-[10px] text-navy/50">ARCHIVE: 043</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 3. TRACKLIST (1990s Mixtape Inlay) -->
+    <section class="bg-white text-ink py-16 md:py-24 px-6 md:px-12 jagged-edge-top jagged-edge-bottom relative z-10 border-y-8 border-gold">
+        <div class="max-w-5xl mx-auto">
+            
+            <div class="flex flex-col md:flex-row justify-between items-end border-b-4 border-ink mb-8 pb-4">
+                <h2 class="font-display text-6xl md:text-8xl text-ink uppercase tracking-tighter">Tracklist</h2>
+                <span class="font-technical text-xs tracking-widest text-gold font-black bg-ink px-3 py-1 hidden md:block">SIDE A / SIDE B</span>
+            </div>
+
+            <ol class="font-typewriter text-lg md:text-2xl uppercase tracking-wider space-y-0 border-4 border-ink bg-white p-6 md:p-12 shadow-[12px_12px_0_#b8884a]">
+                <li class="py-4 border-b-2 border-ink/20 flex flex-col md:flex-row justify-between md:items-end hover:bg-paper/50 px-4 transition-colors">
+                    <span class="font-bold text-ink">01. The Block</span>
+                    <span class="text-sm md:text-lg opacity-50 mt-2 md:mt-0">[ PROD. 19 ]</span>
+                </li>
+                <li class="py-4 border-b-2 border-ink/20 flex flex-col md:flex-row justify-between md:items-end hover:bg-paper/50 px-4 transition-colors">
+                    <span class="font-bold text-ink">02. Between Two Worlds</span>
+                    <span class="text-sm md:text-lg opacity-50 mt-2 md:mt-0">[ SURVIVAL ]</span>
+                </li>
+                <li class="py-4 border-b-2 border-ink/20 flex flex-col md:flex-row justify-between md:items-end hover:bg-paper/50 px-4 transition-colors">
+                    <span class="font-bold text-ink">03. The Burbs</span>
+                    <span class="text-sm md:text-lg opacity-50 mt-2 md:mt-0">[ SACRIFICE ]</span>
+                </li>
+                <li class="py-4 border-b-2 border-ink/20 flex flex-col md:flex-row justify-between md:items-end hover:bg-paper/50 px-4 transition-colors">
+                    <span class="font-bold text-ink">04. 40+ & Building</span>
+                    <span class="text-sm md:text-lg opacity-50 mt-2 md:mt-0">[ OWNERSHIP ]</span>
+                </li>
+                <li class="py-4 flex flex-col md:flex-row justify-between md:items-end hover:bg-paper/50 px-4 transition-colors">
+                    <span class="font-bold text-ink">05. Stadium Gods</span>
+                    <span class="text-sm md:text-lg opacity-50 mt-2 md:mt-0">[ ORIGINS ]</span>
+                </li>
+            </ol>
+
+        </div>
+    </section>
+
+    <!-- 4. STADIUM GODS TEASER BLOCK -->
+    <section class="bg-white text-ink py-20 px-6 md:px-12 text-center relative z-0">
+        <div class="max-w-4xl mx-auto border-[6px] border-ink p-6 md:p-12 shadow-[16px_16px_0_#a64a2e] bg-paper relative overflow-hidden">
+            <!-- Background Sketch Texture Element -->
+            <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: repeating-linear-gradient(45deg, #000 0, #000 2px, transparent 2px, transparent 8px);"></div>
+            
+            <div class="relative z-10">
+                <p class="font-technical text-[10px] uppercase tracking-[0.4em] font-black text-brick mb-6">
+                    THE BLUEPRINT
+                </p>
+                <h2 class="font-display text-5xl md:text-8xl uppercase tracking-tighter text-ink drop-shadow-[4px_4px_0_#e8dcc4]">
+                    STADIUM GODS
+                </h2>
+                <div class="w-24 h-2 bg-brick mx-auto my-6"></div>
+                <p class="font-stencil text-3xl md:text-5xl text-ink">
+                    NOT JUST A DREAM.<br/>A PLAN.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. VIDEO PERFORMANCE SECTION -->
+    <section class="bg-white text-ink pt-16 pb-16 md:pt-24 md:pb-24 px-6 md:px-12 jagged-edge-top relative z-10 border-t-8 border-navy">
+        <div class="max-w-5xl mx-auto">
+            <div class="flex items-center justify-between border-b-[6px] border-ink pb-6 mb-12">
+                <h2 class="font-stencil text-4xl md:text-6xl uppercase">Live In The Flesh</h2>
+                <span class="bg-ink text-paper px-3 py-1 font-technical text-xs font-black tracking-widest hidden md:inline-block">FOUR-PIECE BAND</span>
+            </div>
+
+            <!-- Brutalist Video Container -->
+            <div class="w-full aspect-video border-[6px] border-ink bg-ink shadow-[12px_12px_0_#1a2b3d] relative">
+                <iframe 
+                    class="absolute top-0 left-0 w-full h-full" 
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0" 
+                    title="Joe Young Live Performance" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. NEWSLETTER SIGNUP -->
+    <section class="bg-white text-ink pt-8 pb-20 md:pt-12 md:pb-24 px-6 md:px-12 jagged-edge-top relative z-20">
+        <div class="max-w-5xl mx-auto flex flex-col lg:flex-row gap-12 items-center">
+            
+            <div class="flex-1">
+                <p class="font-technical text-[10px] tracking-[0.4em] text-brick font-black mb-6 uppercase">
+                    // INDEPENDENT OWNERSHIP
+                </p>
+                <h2 class="font-display text-5xl md:text-7xl uppercase tracking-tighter mb-8 text-ink leading-[0.9]">
+                    Ownership<br/>Over Everything
+                </h2>
+                <p class="font-typewriter text-lg text-ink/70 border-l-4 border-gold pl-6 mb-8">
+                    Stop waiting on a label. Join the physical movement. Stay tapped in for new music, visuals, live shows, physical merch, and unreleased drops.
+                </p>
+            </div>
+
+            <div class="w-full lg:w-1/2">
+                <form class="flex flex-col gap-6 bg-paper p-8 border-[6px] border-ink shadow-[12px_12px_0_#a64a2e]" onsubmit="event.preventDefault();">
+                    
+                    <div class="flex flex-col border-b-4 border-ink pb-2">
+                        <label class="font-technical text-[10px] font-black uppercase text-ink tracking-widest mb-2">EMAIL ADDRESS</label>
+                        <input 
+                            type="email" 
+                            placeholder="YOUR@EMAIL.COM" 
+                            class="bg-transparent font-typewriter text-xl text-ink focus:outline-none placeholder-ink/30 uppercase w-full"
+                        />
+                    </div>
+
+                    <div class="flex flex-col border-b-4 border-ink pb-2">
+                        <label class="font-technical text-[10px] font-black uppercase text-ink tracking-widest mb-2">LOCATION (OPTIONAL)</label>
+                        <input 
+                            type="text" 
+                            placeholder="CITY / STATE" 
+                            class="bg-transparent font-typewriter text-xl text-ink focus:outline-none placeholder-ink/30 uppercase w-full"
+                        />
+                    </div>
+
+                    <!-- Street Sign Submit -->
+                    <button type="submit" class="street-sign-btn mt-4 inline-flex items-center bg-ink border-[3px] border-ink p-1 hover:bg-gold transition-colors w-full group">
+                        <span class="flex-grow text-center px-5 py-3 font-display text-paper uppercase tracking-widest text-lg group-hover:text-ink transition-colors">
+                            JOIN THE MOVEMENT
+                        </span>
+                        <div class="bg-paper text-ink p-3 border-l-[3px] border-ink sign-arrow transition-transform duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                            </svg>
+                        </div>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- Footer Footer -->
+        <div class="max-w-5xl mx-auto mt-20 border-t-[3px] border-ink/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 font-technical text-[10px] uppercase font-black tracking-widest text-ink/50">
+            <span>© 2026 JOE YOUNG / STADIUM GODS</span>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-brick transition-colors">INSTAGRAM</a>
+                <a href="#" class="hover:text-brick transition-colors">YOUTUBE</a>
+                <a href="#" class="hover:text-brick transition-colors">SPOTIFY</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. ALWAYS-ON STICKY PLAYER -->
+    <div class="fixed bottom-0 left-0 w-full z-50 bg-ink border-t-[4px] border-gold shadow-[0_-10px_30px_rgba(0,0,0,0.5)]">
+        <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-4 md:gap-6">
+                <div class="w-12 h-12 overflow-hidden border-2 border-paper hidden sm:block">
+                    <img src="https://i.postimg.cc/dtSZg9ss/mixtape-cover.jpg" alt="Cover" class="w-full h-full object-cover filter grayscale contrast-125" />
+                </div>
+                <div>
+                    <p class="font-technical text-[10px] text-brick uppercase tracking-[0.3em] font-black mb-1">NOW PLAYING</p>
+                    <p class="font-display text-paper uppercase tracking-widest text-xs md:text-sm">Between The Block & The Burbs</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-6 md:gap-8">
+                <!-- Brutalist Play Button -->
+                <button class="text-paper hover:text-gold transition-colors">
+                    <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path fill-rule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <div class="hidden md:flex gap-3">
+                    <button class="font-technical text-[10px] uppercase tracking-[0.2em] font-black border border-paper px-3 py-1 hover:bg-paper hover:text-ink transition-colors text-paper">Spotify</button>
+                    <button class="font-technical text-[10px] uppercase tracking-[0.2em] font-black border border-paper px-3 py-1 hover:bg-paper hover:text-ink transition-colors text-paper">Apple Music</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
