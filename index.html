@@ -209,6 +209,30 @@
                 </li>
             </ol>
 
+            <!-- Tracklist CTAs: Share + Follow -->
+            <div class="mt-10 flex flex-col sm:flex-row gap-4 sm:gap-6 items-stretch">
+                <button id="shareBtn" type="button" class="street-sign-btn inline-flex items-center bg-ink border-[3px] border-ink p-1 hover:bg-gold transition-colors w-full sm:flex-1 group">
+                    <span class="flex-grow text-center px-4 sm:px-5 py-3 font-display text-paper uppercase tracking-widest text-base sm:text-lg group-hover:text-ink transition-colors">
+                        <span id="shareBtnLabel">SHARE THIS PAGE</span>
+                    </span>
+                    <div class="bg-paper text-ink p-3 border-l-[3px] border-ink sign-arrow transition-transform duration-200 shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" />
+                        </svg>
+                    </div>
+                </button>
+                <a href="https://instagram.com/iamjoeyoung" target="_blank" rel="noopener noreferrer" class="street-sign-btn inline-flex items-center bg-brick border-[3px] border-ink p-1 hover:bg-gold transition-colors w-full sm:flex-1 group">
+                    <span class="flex-grow text-center px-4 sm:px-5 py-3 font-display text-paper uppercase tracking-widest text-base sm:text-lg group-hover:text-ink transition-colors">
+                        FOLLOW JOE YOUNG ON IG
+                    </span>
+                    <div class="bg-paper text-ink p-3 border-l-[3px] border-ink sign-arrow transition-transform duration-200 shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.336 3.608 1.311.975.975 1.249 2.242 1.311 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.336 2.633-1.311 3.608-.975.975-2.242 1.249-3.608 1.311-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.336-3.608-1.311-.975-.975-1.249-2.242-1.311-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.336-2.633 1.311-3.608.975-.975 2.242-1.249 3.608-1.311C8.416 2.175 8.796 2.163 12 2.163zm0 1.838c-3.148 0-3.515.012-4.756.069-1.018.046-1.572.215-1.939.357-.487.19-.835.416-1.2.78-.365.366-.59.714-.78 1.2-.143.368-.311.922-.357 1.94-.057 1.24-.069 1.608-.069 4.756s.012 3.515.069 4.756c.046 1.018.215 1.572.357 1.939.19.487.416.835.78 1.2.366.365.714.59 1.2.78.368.143.922.311 1.94.357 1.24.057 1.608.069 4.756.069s3.515-.012 4.756-.069c1.018-.046 1.572-.215 1.939-.357.487-.19.835-.416 1.2-.78.365-.366.59-.714.78-1.2.143-.368.311-.922.357-1.94.057-1.24.069-1.608.069-4.756s-.012-3.515-.069-4.756c-.046-1.018-.215-1.572-.357-1.939a3.23 3.23 0 00-.78-1.2 3.23 3.23 0 00-1.2-.78c-.368-.143-.922-.311-1.94-.357-1.24-.057-1.608-.069-4.756-.069zm0 3.131a5.868 5.868 0 110 11.736 5.868 5.868 0 010-11.736zm0 1.838a4.03 4.03 0 100 8.06 4.03 4.03 0 000-8.06zm6.103-2.018a1.37 1.37 0 11-2.74 0 1.37 1.37 0 012.74 0z"/>
+                        </svg>
+                    </div>
+                </a>
+            </div>
+
         </div>
     </section>
 
@@ -408,6 +432,36 @@
     </div>
 
     <script>
+        (function () {
+            const btn = document.getElementById('shareBtn');
+            if (!btn) return;
+            const label = document.getElementById('shareBtnLabel');
+            const originalLabel = label.textContent;
+            const flash = (text) => {
+                label.textContent = text;
+                setTimeout(() => { label.textContent = originalLabel; }, 2000);
+            };
+            btn.addEventListener('click', async () => {
+                const shareData = {
+                    title: document.title,
+                    text: 'Joe Young — Between The Block & The Burbs',
+                    url: window.location.href
+                };
+                try {
+                    if (navigator.share) {
+                        await navigator.share(shareData);
+                        return;
+                    }
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        await navigator.clipboard.writeText(shareData.url);
+                        flash('LINK COPIED');
+                        return;
+                    }
+                    window.prompt('Copy this link:', shareData.url);
+                } catch (_) { /* user cancelled or share failed */ }
+            });
+        })();
+
         (function () {
             const form = document.getElementById('signupForm');
             if (!form) return;
