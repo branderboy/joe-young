@@ -48,12 +48,15 @@
         /* NYT Editorial Drop Cap */
         .drop-cap::first-letter {
             font-family: 'Special Elite', cursive;
-            font-size: 4.5rem;
+            font-size: 3rem;
             line-height: 1;
             float: left;
             margin-right: 0.5rem;
             margin-top: 0.1rem;
             color: #1a2b3d;
+        }
+        @media (min-width: 768px) {
+            .drop-cap::first-letter { font-size: 4.5rem; }
         }
 
         /* 1990s Mixtape Texture */
@@ -101,7 +104,7 @@
 
         <!-- Street Sign CTA -->
         <a href="#about" class="street-sign-btn animate-brutal-pulse inline-flex items-center bg-ink border-[3px] border-paper p-1 shadow-[6px_6px_0_#b8884a] transition-all active:translate-y-1 active:shadow-[2px_2px_0_#b8884a] mt-8">
-            <span class="px-8 py-3 font-display text-paper uppercase tracking-widest text-xl md:text-2xl">
+            <span class="px-6 sm:px-8 py-3 font-display text-paper uppercase tracking-widest text-base sm:text-xl md:text-2xl">
                 LISTEN NOW
             </span>
             <div class="bg-paper text-ink p-3 border-l-[3px] border-ink sign-arrow transition-transform duration-200">
@@ -121,11 +124,11 @@
                 <p class="font-technical text-[10px] tracking-[0.3em] uppercase font-black mb-6 text-brick">
                     // NORTHEAST DC TO PRINCE GEORGE'S COUNTY
                 </p>
-                <h2 class="font-stencil text-5xl md:text-7xl uppercase text-navy leading-none mb-8">
+                <h2 class="font-stencil text-4xl sm:text-5xl md:text-7xl uppercase text-navy leading-none mb-8">
                     The Origin<br/>Narrative
                 </h2>
-                
-                <div class="text-lg md:text-xl leading-relaxed text-navy/90 text-justify space-y-6">
+
+                <div class="text-base sm:text-lg md:text-xl leading-relaxed text-navy/90 text-left md:text-justify space-y-6">
                     <p class="drop-cap">
                         Joe Young is an artist with more than forty years of lived experience behind his music. Raised in a household shaped by both love and instability, he learned early how to survive through observation and build through discipline. His grandmother sold two homes to relocate the family—that sacrifice became the foundation of everything that followed.
                     </p>
@@ -145,7 +148,7 @@
             <div class="lg:col-span-5 flex flex-row items-center justify-center lg:justify-end pt-8 lg:pt-16">
                 
                 <!-- Polaroid 1 (Left, tilted backward) -->
-                <div class="bg-white p-3 pb-12 shadow-[8px_8px_0_#1a2b3d] -rotate-6 hover:rotate-0 transition-transform duration-500 rounded-sm border-2 border-navy/10 w-40 md:w-56 z-10 translate-x-4 translate-y-4">
+                <div class="bg-white p-2 sm:p-3 pb-10 sm:pb-12 shadow-[6px_6px_0_#1a2b3d] sm:shadow-[8px_8px_0_#1a2b3d] -rotate-6 hover:rotate-0 transition-transform duration-500 rounded-sm border-2 border-navy/10 w-32 sm:w-40 md:w-56 z-10 translate-x-3 translate-y-3 sm:translate-x-4 sm:translate-y-4">
                     <img
                         src="images/RZRY7450.jpg"
                         class="w-full aspect-square object-cover filter grayscale contrast-[1.2]"
@@ -157,7 +160,7 @@
                 </div>
 
                 <!-- Polaroid 2 (Right, overlapping, tilted forward) -->
-                <div class="bg-white p-3 pb-12 shadow-[8px_8px_0_#a64a2e] rotate-6 hover:rotate-0 transition-transform duration-500 rounded-sm border-2 border-navy/10 w-40 md:w-56 z-20 -translate-x-4 -translate-y-4">
+                <div class="bg-white p-2 sm:p-3 pb-10 sm:pb-12 shadow-[6px_6px_0_#a64a2e] sm:shadow-[8px_8px_0_#a64a2e] rotate-6 hover:rotate-0 transition-transform duration-500 rounded-sm border-2 border-navy/10 w-32 sm:w-40 md:w-56 z-20 -translate-x-3 -translate-y-3 sm:-translate-x-4 sm:-translate-y-4">
                     <img
                         src="images/RZRY7465.jpg"
                         class="w-full aspect-square object-cover filter grayscale contrast-[1.2]"
@@ -179,11 +182,11 @@
         <div class="max-w-5xl mx-auto">
             
             <div class="flex flex-col md:flex-row justify-between items-end border-b-4 border-ink mb-8 pb-4">
-                <h2 class="font-display text-6xl md:text-8xl text-ink uppercase tracking-tighter">Tracklist</h2>
+                <h2 class="font-display text-5xl sm:text-6xl md:text-8xl text-ink uppercase tracking-tighter">Tracklist</h2>
                 <span class="font-technical text-xs tracking-widest text-gold font-black bg-ink px-3 py-1 hidden md:block">SIDE A / SIDE B</span>
             </div>
 
-            <ol class="font-typewriter text-lg md:text-2xl uppercase tracking-wider space-y-0 border-4 border-ink bg-white p-6 md:p-12 shadow-[12px_12px_0_#b8884a]">
+            <ol class="font-typewriter text-base sm:text-lg md:text-2xl uppercase tracking-wider space-y-0 border-4 border-ink bg-white p-4 sm:p-6 md:p-12 shadow-[8px_8px_0_#b8884a] sm:shadow-[12px_12px_0_#b8884a]">
                 <li class="py-4 border-b-2 border-ink/20 flex flex-col md:flex-row justify-between md:items-end hover:bg-paper/50 px-4 transition-colors">
                     <span class="font-bold text-ink">01. The Block</span>
                     <span class="text-sm md:text-lg opacity-50 mt-2 md:mt-0">[ PROD. 19 ]</span>
@@ -206,6 +209,30 @@
                 </li>
             </ol>
 
+            <!-- Tracklist CTAs: Share + Follow -->
+            <div class="mt-10 flex flex-col sm:flex-row gap-4 sm:gap-6 items-stretch">
+                <button id="shareBtn" type="button" class="street-sign-btn inline-flex items-center bg-ink border-[3px] border-ink p-1 hover:bg-gold transition-colors w-full sm:flex-1 group">
+                    <span class="flex-grow text-center px-4 sm:px-5 py-3 font-display text-paper uppercase tracking-widest text-base sm:text-lg group-hover:text-ink transition-colors">
+                        <span id="shareBtnLabel">SHARE THIS PAGE</span>
+                    </span>
+                    <div class="bg-paper text-ink p-3 border-l-[3px] border-ink sign-arrow transition-transform duration-200 shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" />
+                        </svg>
+                    </div>
+                </button>
+                <a href="https://instagram.com/iamjoeyoung" target="_blank" rel="noopener noreferrer" class="street-sign-btn inline-flex items-center bg-brick border-[3px] border-ink p-1 hover:bg-gold transition-colors w-full sm:flex-1 group">
+                    <span class="flex-grow text-center px-4 sm:px-5 py-3 font-display text-paper uppercase tracking-widest text-base sm:text-lg group-hover:text-ink transition-colors">
+                        FOLLOW JOE YOUNG ON IG
+                    </span>
+                    <div class="bg-paper text-ink p-3 border-l-[3px] border-ink sign-arrow transition-transform duration-200 shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.336 3.608 1.311.975.975 1.249 2.242 1.311 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.336 2.633-1.311 3.608-.975.975-2.242 1.249-3.608 1.311-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.336-3.608-1.311-.975-.975-1.249-2.242-1.311-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.336-2.633 1.311-3.608.975-.975 2.242-1.249 3.608-1.311C8.416 2.175 8.796 2.163 12 2.163zm0 1.838c-3.148 0-3.515.012-4.756.069-1.018.046-1.572.215-1.939.357-.487.19-.835.416-1.2.78-.365.366-.59.714-.78 1.2-.143.368-.311.922-.357 1.94-.057 1.24-.069 1.608-.069 4.756s.012 3.515.069 4.756c.046 1.018.215 1.572.357 1.939.19.487.416.835.78 1.2.366.365.714.59 1.2.78.368.143.922.311 1.94.357 1.24.057 1.608.069 4.756.069s3.515-.012 4.756-.069c1.018-.046 1.572-.215 1.939-.357.487-.19.835-.416 1.2-.78.365-.366.59-.714.78-1.2.143-.368.311-.922.357-1.94.057-1.24.069-1.608.069-4.756s-.012-3.515-.069-4.756c-.046-1.018-.215-1.572-.357-1.939a3.23 3.23 0 00-.78-1.2 3.23 3.23 0 00-1.2-.78c-.368-.143-.922-.311-1.94-.357-1.24-.057-1.608-.069-4.756-.069zm0 3.131a5.868 5.868 0 110 11.736 5.868 5.868 0 010-11.736zm0 1.838a4.03 4.03 0 100 8.06 4.03 4.03 0 000-8.06zm6.103-2.018a1.37 1.37 0 11-2.74 0 1.37 1.37 0 012.74 0z"/>
+                        </svg>
+                    </div>
+                </a>
+            </div>
+
         </div>
     </section>
 
@@ -219,11 +246,11 @@
                 <p class="font-technical text-[10px] uppercase tracking-[0.4em] font-black text-brick mb-6">
                     THE BLUEPRINT
                 </p>
-                <h2 class="font-display text-5xl md:text-8xl uppercase tracking-tighter text-ink drop-shadow-[4px_4px_0_#e8dcc4]">
+                <h2 class="font-display text-4xl sm:text-5xl md:text-8xl uppercase tracking-tighter text-ink drop-shadow-[4px_4px_0_#e8dcc4]">
                     STADIUM GODS
                 </h2>
                 <div class="w-24 h-2 bg-brick mx-auto my-6"></div>
-                <p class="font-stencil text-3xl md:text-5xl text-ink">
+                <p class="font-stencil text-2xl sm:text-3xl md:text-5xl text-ink">
                     NOT JUST A DREAM.<br/>A PLAN.
                 </p>
 
@@ -239,7 +266,7 @@
                                 <svg class="w-5 h-5 fill-gold stroke-ink stroke-2" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                                 <svg class="w-5 h-5 fill-gold stroke-ink stroke-2" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                             </div>
-                            <p class="text-xl md:text-3xl font-bold text-ink leading-snug">"A masterclass in independent hip-hop. The grit of the block meets veteran maturity."</p>
+                            <p class="text-lg sm:text-xl md:text-3xl font-bold text-ink leading-snug">"A masterclass in independent hip-hop. The grit of the block meets veteran maturity."</p>
                         </div>
                         <p class="font-technical text-xs md:text-sm uppercase font-black text-brick tracking-widest shrink-0 md:text-right md:self-end">— DMV SOUNDCHECK</p>
                     </div>
@@ -254,7 +281,7 @@
                                 <svg class="w-5 h-5 fill-gold stroke-ink stroke-2" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                                 <svg class="w-5 h-5 fill-gold stroke-ink stroke-2" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                             </div>
-                            <p class="text-xl md:text-3xl font-bold text-ink leading-snug">"Raw authenticity. This isn't just an album, it's a cinematic memoir."</p>
+                            <p class="text-lg sm:text-xl md:text-3xl font-bold text-ink leading-snug">"Raw authenticity. This isn't just an album, it's a cinematic memoir."</p>
                         </div>
                         <p class="font-technical text-xs md:text-sm uppercase font-black text-brick tracking-widest shrink-0 md:text-right md:self-end">— UNDERGROUND MAG</p>
                     </div>
@@ -269,7 +296,7 @@
                                 <svg class="w-5 h-5 fill-gold stroke-ink stroke-2" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                                 <svg class="w-5 h-5 fill-gold stroke-ink stroke-2" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                             </div>
-                            <p class="text-xl md:text-3xl font-bold text-ink leading-snug">"A true testament to the power of independent ownership. 10/10."</p>
+                            <p class="text-lg sm:text-xl md:text-3xl font-bold text-ink leading-snug">"A true testament to the power of independent ownership. 10/10."</p>
                         </div>
                         <p class="font-technical text-xs md:text-sm uppercase font-black text-brick tracking-widest shrink-0 md:text-right md:self-end">— ALLHIPHOP.COM</p>
                     </div>
@@ -282,7 +309,7 @@
     <section class="bg-white text-ink pt-16 pb-16 md:pt-24 md:pb-24 px-6 md:px-12 jagged-edge-top relative z-10 border-t-8 border-navy">
         <div class="max-w-5xl mx-auto">
             <div class="flex items-center justify-between border-b-[6px] border-ink pb-6 mb-12">
-                <h2 class="font-stencil text-4xl md:text-6xl uppercase">In Interview Mode</h2>
+                <h2 class="font-stencil text-3xl sm:text-4xl md:text-6xl uppercase">In Interview Mode</h2>
                 <span class="bg-ink text-paper px-3 py-1 font-technical text-xs font-black tracking-widest hidden md:inline-block">ALLHIPHOP.COM</span>
             </div>
 
@@ -308,38 +335,47 @@
                 <p class="font-technical text-[10px] tracking-[0.4em] text-brick font-black mb-6 uppercase">
                     // INDEPENDENT OWNERSHIP
                 </p>
-                <h2 class="font-display text-5xl md:text-7xl uppercase tracking-tighter mb-8 text-ink leading-[0.9]">
+                <h2 class="font-display text-4xl sm:text-5xl md:text-7xl uppercase tracking-tighter mb-8 text-ink leading-[0.9]">
                     Ownership<br/>Over Everything
                 </h2>
-                <p class="font-typewriter text-lg text-ink/70 border-l-4 border-gold pl-6 mb-8">
+                <p class="font-typewriter text-base sm:text-lg text-ink/70 border-l-4 border-gold pl-4 sm:pl-6 mb-8">
                     Stop waiting on a label. Join the physical movement. Stay tapped in for new music, visuals, live shows, physical merch, and unreleased drops.
                 </p>
             </div>
 
             <div class="w-full lg:w-1/2">
-                <form class="flex flex-col gap-6 bg-paper p-8 border-[6px] border-ink shadow-[12px_12px_0_#a64a2e]" onsubmit="event.preventDefault();">
-                    
+                <form id="signupForm" class="flex flex-col gap-5 sm:gap-6 bg-paper p-5 sm:p-8 border-[6px] border-ink shadow-[8px_8px_0_#a64a2e] sm:shadow-[12px_12px_0_#a64a2e]" novalidate>
+
                     <div class="flex flex-col border-b-4 border-ink pb-2">
-                        <label class="font-technical text-[10px] font-black uppercase text-ink tracking-widest mb-2">EMAIL ADDRESS</label>
-                        <input 
-                            type="email" 
-                            placeholder="YOUR@EMAIL.COM" 
+                        <label for="signupEmail" class="font-technical text-[10px] font-black uppercase text-ink tracking-widest mb-2">EMAIL ADDRESS</label>
+                        <input
+                            id="signupEmail"
+                            name="email"
+                            type="email"
+                            required
+                            autocomplete="email"
+                            placeholder="YOUR@EMAIL.COM"
                             class="bg-transparent font-typewriter text-xl text-ink focus:outline-none placeholder-ink/30 uppercase w-full"
                         />
                     </div>
 
                     <div class="flex flex-col border-b-4 border-ink pb-2">
-                        <label class="font-technical text-[10px] font-black uppercase text-ink tracking-widest mb-2">LOCATION (OPTIONAL)</label>
-                        <input 
-                            type="text" 
-                            placeholder="CITY / STATE" 
+                        <label for="signupLocation" class="font-technical text-[10px] font-black uppercase text-ink tracking-widest mb-2">LOCATION (OPTIONAL)</label>
+                        <input
+                            id="signupLocation"
+                            name="location"
+                            type="text"
+                            autocomplete="address-level2"
+                            placeholder="CITY / STATE"
                             class="bg-transparent font-typewriter text-xl text-ink focus:outline-none placeholder-ink/30 uppercase w-full"
                         />
                     </div>
+
+                    <p id="signupMessage" class="font-technical text-[11px] font-black uppercase tracking-widest hidden"></p>
 
                     <!-- Street Sign Submit -->
-                    <button type="submit" class="street-sign-btn mt-4 inline-flex items-center bg-ink border-[3px] border-ink p-1 hover:bg-gold transition-colors w-full group">
-                        <span class="flex-grow text-center px-5 py-3 font-display text-paper uppercase tracking-widest text-lg group-hover:text-ink transition-colors">
+                    <button type="submit" class="street-sign-btn mt-4 inline-flex items-center bg-ink border-[3px] border-ink p-1 hover:bg-gold transition-colors w-full group disabled:opacity-60 disabled:cursor-not-allowed">
+                        <span id="signupButtonLabel" class="flex-grow text-center px-5 py-3 font-display text-paper uppercase tracking-widest text-lg group-hover:text-ink transition-colors">
                             JOIN THE MOVEMENT
                         </span>
                         <div class="bg-paper text-ink p-3 border-l-[3px] border-ink sign-arrow transition-transform duration-200">
@@ -366,23 +402,27 @@
 
     <!-- 7. ALWAYS-ON STICKY PLAYER -->
     <div class="fixed bottom-0 left-0 w-full z-50 bg-ink border-t-[4px] border-gold shadow-[0_-10px_30px_rgba(0,0,0,0.5)]">
-        <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
-            <div class="flex items-center gap-4 md:gap-6">
-                <div class="w-12 h-12 overflow-hidden border-2 border-paper hidden sm:block">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 py-3 flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3 md:gap-6 min-w-0">
+                <div class="w-12 h-12 overflow-hidden border-2 border-paper hidden sm:block shrink-0">
                     <img src="https://i.postimg.cc/dtSZg9ss/mixtape-cover.jpg" alt="Cover" class="w-full h-full object-cover filter grayscale contrast-125" />
                 </div>
-                <div>
-                    <p class="font-technical text-[10px] text-brick uppercase tracking-[0.3em] font-black mb-1">NOW PLAYING</p>
-                    <p class="font-display text-paper uppercase tracking-widest text-xs md:text-sm">Between The Block & The Burbs</p>
+                <div class="min-w-0">
+                    <p class="font-technical text-[9px] sm:text-[10px] text-brick uppercase tracking-[0.3em] font-black mb-1">NOW PLAYING</p>
+                    <p class="font-display text-paper uppercase tracking-widest text-[11px] sm:text-xs md:text-sm truncate">Between The Block &amp; The Burbs</p>
                 </div>
             </div>
-            <div class="flex items-center gap-6 md:gap-8">
+            <div class="flex items-center gap-4 md:gap-8 shrink-0">
                 <!-- Brutalist Play Button -->
-                <button class="text-paper hover:text-gold transition-colors">
-                    <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <button id="playerToggle" class="text-paper hover:text-gold transition-colors" aria-label="Play">
+                    <svg id="playerIconPlay" class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                         <path fill-rule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clip-rule="evenodd" />
                     </svg>
+                    <svg id="playerIconPause" class="w-8 h-8 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path fill-rule="evenodd" d="M6.75 5.25a.75.75 0 01.75-.75H9a.75.75 0 01.75.75v13.5a.75.75 0 01-.75.75H7.5a.75.75 0 01-.75-.75V5.25zm7.5 0A.75.75 0 0115 4.5h1.5a.75.75 0 01.75.75v13.5a.75.75 0 01-.75.75H15a.75.75 0 01-.75-.75V5.25z" clip-rule="evenodd" />
+                    </svg>
                 </button>
+                <audio id="playerAudio" preload="metadata" src="BTB%26TB%20(Accept%20Maturity).mp3"></audio>
                 <div class="hidden md:flex gap-3">
                     <button class="font-technical text-[10px] uppercase tracking-[0.2em] font-black border border-paper px-3 py-1 hover:bg-paper hover:text-ink transition-colors text-paper">Spotify</button>
                     <button class="font-technical text-[10px] uppercase tracking-[0.2em] font-black border border-paper px-3 py-1 hover:bg-paper hover:text-ink transition-colors text-paper">Apple Music</button>
@@ -390,6 +430,100 @@
             </div>
         </div>
     </div>
+
+    <script>
+        (function () {
+            const btn = document.getElementById('shareBtn');
+            if (!btn) return;
+            const label = document.getElementById('shareBtnLabel');
+            const originalLabel = label.textContent;
+            const flash = (text) => {
+                label.textContent = text;
+                setTimeout(() => { label.textContent = originalLabel; }, 2000);
+            };
+            btn.addEventListener('click', async () => {
+                const shareData = {
+                    title: document.title,
+                    text: 'Joe Young — Between The Block & The Burbs',
+                    url: window.location.href
+                };
+                try {
+                    if (navigator.share) {
+                        await navigator.share(shareData);
+                        return;
+                    }
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        await navigator.clipboard.writeText(shareData.url);
+                        flash('LINK COPIED');
+                        return;
+                    }
+                    window.prompt('Copy this link:', shareData.url);
+                } catch (_) { /* user cancelled or share failed */ }
+            });
+        })();
+
+        (function () {
+            const form = document.getElementById('signupForm');
+            if (!form) return;
+            const emailInput = document.getElementById('signupEmail');
+            const locationInput = document.getElementById('signupLocation');
+            const message = document.getElementById('signupMessage');
+            const buttonLabel = document.getElementById('signupButtonLabel');
+            const STORAGE_KEY = 'jy_signups';
+
+            const showMessage = (text, ok) => {
+                message.textContent = text;
+                message.classList.remove('hidden', 'text-brick', 'text-ink');
+                message.classList.add(ok ? 'text-ink' : 'text-brick');
+            };
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = (emailInput.value || '').trim();
+                const location = (locationInput.value || '').trim();
+                const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+                if (!emailOk) {
+                    showMessage('// ENTER A VALID EMAIL TO JOIN', false);
+                    emailInput.focus();
+                    return;
+                }
+                try {
+                    const list = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+                    list.push({ email, location, ts: new Date().toISOString() });
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+                } catch (_) { /* ignore storage errors */ }
+                buttonLabel.textContent = 'YOU’RE IN — STAY TAPPED IN';
+                showMessage('// SIGNED UP AS ' + email.toUpperCase(), true);
+                emailInput.value = '';
+                locationInput.value = '';
+            });
+        })();
+
+        (function () {
+            const audio = document.getElementById('playerAudio');
+            const toggle = document.getElementById('playerToggle');
+            const iconPlay = document.getElementById('playerIconPlay');
+            const iconPause = document.getElementById('playerIconPause');
+            if (!audio || !toggle) return;
+
+            const setPlayingUI = (playing) => {
+                iconPlay.classList.toggle('hidden', playing);
+                iconPause.classList.toggle('hidden', !playing);
+                toggle.setAttribute('aria-label', playing ? 'Pause' : 'Play');
+            };
+
+            toggle.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play().catch(() => setPlayingUI(false));
+                } else {
+                    audio.pause();
+                }
+            });
+            audio.addEventListener('play', () => setPlayingUI(true));
+            audio.addEventListener('pause', () => setPlayingUI(false));
+            audio.addEventListener('ended', () => setPlayingUI(false));
+        })();
+    </script>
 
 </body>
 </html>
